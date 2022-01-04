@@ -1,0 +1,30 @@
+Router
+  stack [
+    //第一层路由，走到这层时，通过dispatch先走完第二层路由，跳出并当前第一层路由再走下一个第一层路由
+    Layer 1 {
+      path: 'xx', //请求路径
+      dispatch, //处理函数
+      //第二层路由
+      Route {
+        stack [
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' },
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' },
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' }
+        ],
+        dispatch //遍历调用stack中的handler
+      }
+    },
+
+    Layer 2 {
+      path: 'xx',
+      dispatch,
+      Route {
+        stack [
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' },
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' },
+          Layer { path: 'xx', method: 'xxx', handler: 'xxx' }
+        ],
+        dispatch //遍历调用stack中的handler
+      }
+    }
+  ]
